@@ -1,0 +1,72 @@
+// app global css in SCSS form
+@font-face {
+  font-family: customfont;
+  src: url(../css/fonts/montserrat/Montserrat-Bold.woff);
+}
+
+.my-font {
+  font-family: 'customfont';
+}
+
+@font-face {
+  font-family: thinSolo;
+  src: url(../css/fonts/montserrat/Montserrat-Thin.woff);
+}
+
+.my-font2 {
+  font-family: 'thinSolo';
+}
+
+@font-face {
+  font-family: blackTitulos;
+  src: url(../css/fonts/montserrat/Montserrat-Black.woff);
+}
+
+.titles-font {
+  font-family: 'blackTitulos';
+}
+
+@font-face {
+  font-family: myFontMedium;
+  src: url(../css/fonts/montserrat/Montserrat-Medium.woff);
+}
+
+.my-font-medium {
+  font-family: 'myFontMedium';
+}
+
+@font-face {
+  font-family: myFontRegular;
+  src: url(../css/fonts/montserrat/Montserrat-Regular.woff);
+}
+
+.my-font-regular {
+  font-family: 'myFontRegular';
+}
+
+@font-face {
+  font-family: myFontSemiBold;
+  src: url(../css/fonts/montserrat/Montserrat-SemiBold.woff);
+}
+
+.my-font-semibold {
+  font-family: 'myFontSemiBold';
+}
+
+@font-face {
+  font-family: myFontLight;
+  src: url(../css/fonts/montserrat/Montserrat-Light.woff);
+}
+
+.my-font-light {
+  font-family: 'myFontLight';
+}
+
+@font-face {
+  font-family: myFontExtraBold;
+  src: url(../css/fonts/montserrat/Montserrat-ExtraBold.woff);
+}
+
+.my-font-extra-bold {
+  font-family: 'myFontExtraBold';
+}

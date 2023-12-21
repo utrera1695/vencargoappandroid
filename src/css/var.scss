@@ -1,0 +1,50 @@
+.sin-padding-margin {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.radio-bordes {
+  border-radius: 12px;
+}
+
+.radio-bordes-item {
+  border-radius: 6px;
+}
+
+.fondo-style {
+  background: linear-gradient(to bottom, rgb(37, 45, 79) 0%, $primary 50%, $primary 50%, rgb(37, 45, 79) 100% );
+}
+
+.card-list-radios {
+  border-radius: 12px;
+}
+
+.box-shadow-card {
+  box-shadow: 0 3px 4px rgba(114, 114, 114, 0.1), 0 3px 6px rgba(116, 116, 116, 0.1);
+  border: 1px solid #d1d1cf;
+}
+
+.box-shadow-card-listados {
+  box-shadow: 0 3px 4px rgba(114, 114, 114, 0.1), 0 3px 6px rgba(116, 116, 116, 0.1);
+  border: 1px solid #afafaf;
+}
+
+.box-shadow-search {
+  border-radius: 18px !important;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-shadow: 0 3px 4px rgba(114, 114, 114, 0.1), 0 3px 14px rgba(116, 116, 116, 0.2);
+}
+
+.box-shadow-footer {
+  box-shadow: 0 3px 4px rgba(114, 114, 114, 0.1), 0 3px 14px rgba(116, 116, 116, 0.2);
+}
+
+input::placeholder {
+  color: #9d9d9d !important;
+  font-size: 16px;
+}
+
+.color-siete {
+  color:#777777
+}
