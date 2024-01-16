@@ -29,7 +29,7 @@
         <div class="column items-center">
           <q-img src="contacto/gps.svg" width="40px"  />
           <q-item-label class="q-mt-xs text-primary text-uppercase my-font-extra-bold" style="font-size:20px"> ubicación </q-item-label>
-          <q-item-label class="q-mt-xs text-primary my-font-medium" style="font-size:20px"> 8601 NW 72nd </q-item-label>
+          <q-item-label class="q-mt-xs text-primary my-font-medium" style="font-size:20px"> 6994 NW 82 Ave </q-item-label>
           <q-item-label class="q-mt-xs text-primary my-font-medium" style="font-size:20px"> Miami, FL - 33166 </q-item-label>
         </div>
       </q-item>
