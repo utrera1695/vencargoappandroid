@@ -1,0 +1,20 @@
+{
+  "android": {
+    "debug": {
+      "packageType": "apk",
+      "keystore": "./jam-vencargo.keystore",
+      "storePassword": "vencargo",
+      "alias": "vencargo",
+      "password": "vencargo",
+      "keystoreType": "jks"
+    },
+    "release": {
+      "packageType": "bundle",
+      "keystore": "./jam-vencargo.keystore",
+      "storePassword": "vencargo",
+      "alias": "vencargo",
+      "password": "vencargo",
+      "keystoreType": "jks"
+    }
+  }
+}

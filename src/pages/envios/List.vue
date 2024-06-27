@@ -69,7 +69,7 @@
                   style="font-size:14px"
                 >
                   <div style="width:10px;height:10px;border-radius:100%" class="q-mr-sm" :style="{ 'background-color': colorCircle(7)}" ></div>
-                  <div> {{ showLabelEnvio(item.estado_envio) }} </div>
+                  <div v-if="item.shipment_status"> {{ item.shipment_status.title }} </div>
                 </div>
                 <div
                   class="q-mb-sm"
@@ -163,7 +163,7 @@
                   <div
                     class="text-uppercase my-font-semibold text-subtitle1 q-pt-xs"
                     style="line-height:auto"
-                  > {{showLabelEnvio(infoShippings.estado_envio)}} </div>
+                  > {{infoShippings.estado_envio}} </div>
                 </div>
               </div>
             </q-scroll-area>
@@ -189,8 +189,6 @@
 // import { ListMixin } from '../../mixins/List'
 import GoogleMap from '../../components/GoogleMapView'
 import { mapGetters } from 'vuex'
-import { date } from 'quasar'
-
 import moment from 'moment'
 
 export default {
@@ -239,7 +237,7 @@ export default {
   methods: {
     ...mapGetters('generals', ['UserInfo']),
     isMapItem (item) {
-      return !item.map || item.map === [] || item.estado_envio === 'ENTREGADO'
+      return !item.map || item.map.length <= 0 || item.estado_envio === 'ENTREGADO'
     },
     async resetPaginationAndLoadFirstPage () {
       this.isFirstLoad = true
@@ -333,7 +331,7 @@ export default {
       this.infoShippings = {
         ...res.result,
         warehouses_filter: [...res.result.warehouses.filter(item => item.tracking)],
-        estado_envio: itm.estado_envio
+        estado_envio: itm?.shipment_status?.title || ''
       }
       console.log(res, 'res')
 

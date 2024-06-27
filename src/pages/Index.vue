@@ -173,7 +173,6 @@ export default {
             ruta_image: `${env.apiUrlImg}/${item.ruta_image}`
           }
         })
-
       }
     },
     showLabelEnvio (val) {
@@ -256,19 +255,19 @@ export default {
       } else if (dataEnvio && dataEnvio.estado_pago === 'Pendiente' && moduleData === 'Factura-Envio') {
         return `
           <div class="q-mt-sm">
-            El paquete ee encuentra pendiente por pagar con estado ${this.showLabelEnvio(dataEnvio.estado_envio)}.
+            El paquete ee encuentra pendiente por pagar con estado ${dataEnvio?.shipment_status?.title}.
           </div>
         `
       } else if (dataEnvio && dataEnvio.estado_pago === 'Verificacion-Pago' && moduleData === 'Factura-Envio') {
         return `
           <div class="q-mt-sm">
-            Nos encontramos verificando el pago de su paquete con estado ${this.showLabelEnvio(dataEnvio.estado_envio)}.
+            Nos encontramos verificando el pago de su paquete con estado ${dataEnvio?.shipment_status?.title}.
           </div>
         `
       } else if (dataEnvio && dataEnvio.estado_pago === 'Pago-Verificado' && moduleData === 'Factura-Envio') {
         return `
           <div class="q-mt-sm">
-            El paquete se encuentra con estado ${this.showLabelEnvio(dataEnvio.estado_envio)}.
+            El paquete se encuentra con estado ${dataEnvio?.shipment_status?.title}.
           </div>
         `
       } else if (!dataEnvio) {
@@ -283,47 +282,13 @@ export default {
             El tracking aún no se encuentra en nuestro almacén, estado: Pendiente
           </div>
         `
-      }else {
+      } else {
         return `
           <div class="q-mt-sm">
             Algo salió mal, por favor intente nuevamente.
           </div>
         `
       }
-    },
-    showLabelEnvio (val) {
-      const enviosEstados = [
-        {
-          title: 'ALMACÉN MIAMI',
-          value: 'FACTURADO'
-        },
-        {
-          title: 'ENVIADO HACIA VENEZUELA',
-          value: 'ENVIO-VENEZUELA'
-        },
-        {
-          title: 'EN TRÁNSITO HACIA VENEZUELA',
-          value: 'ENTRANSITO-VENEZUELA'
-        },
-        {
-          title: 'ADUANA DE VENEZUELA',
-          value: 'ADUANA-VENEZUELA'
-        },
-        // almacen venezuela
-        {
-          title: 'ALMACÉN VENEZUELA',
-          value: 'ALMACEN-VENEZUELA'
-        },
-        // entregado
-        {
-          title: 'ENTREGADO',
-          value: 'ENTREGADO'
-        }
-      ]
-
-      // devolver el titulo del envio segun el valor
-      const envio = enviosEstados.find(item => item.value === val)
-      return envio ? envio.title : ''
     },
     async countData () {
       const userInfo = this.UserInfo()

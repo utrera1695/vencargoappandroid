@@ -34,3 +34,6 @@ yarn-error.log*
 
 /src/env.js
 env.js
+
+*.keystore
+*.jks

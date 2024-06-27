@@ -1,14 +1,19 @@
 {
   "name": "currier",
-  "version": "0.2.310",
+  "version": "0.2.318",
   "description": "A Quasar Framework app",
   "productName": "Venezuela Cargo",
   "author": "denilsson.d.sousa@gmail.com",
   "private": true,
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "set NODE_OPTIONS=--openssl-legacy-provider && quasar dev",
+    "cordova:debug": "set NODE_OPTIONS=--openssl-legacy-provider && quasar build -m cordova -T android  --debug -- --buildConfig=\"../build.cordova.json\"",
+    "cordova:prod": "set NODE_OPTIONS=--openssl-legacy-provider && quasar build -m cordova -T android -- --buildConfig=\"../build.cordova.json\""
   },
   "dependencies": {
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
     "big.js": "^6.2.1",
