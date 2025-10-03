@@ -51,9 +51,8 @@
 
       <q-card class="q-ma-md q-pa-md no-shadow box-shadow-card" style="border-radius:10px;margin-top:2px !important">
         <div class="row items-end">
-          <div class="text-left titles-font text-uppercase" style="font-size:16px">Dimensiones</div>
-          <div class="text-left my-font-regular color-labelT text-uppercase  q-ml-sm" style="font-size:14px">pulgadas</div>
-        </div>
+          <div class="text-left titles-font text-uppercase" style="font-size:16px">Dimensiones en pulgadas</div>
+         </div>
 
         <div class="row justify-between items-center full-width q-pa-sm q-mt-md">
           <div class="col-3 q-ml-xs q-mr-xs">
@@ -97,7 +96,13 @@
               :input-style="{ color: 'black' }"
             />
           </div>
-          <div class="col-3 q-ml-xs q-mr-xs q-mt-sm">
+        </div>
+<!-- peso -->
+        <div class="row items-end">
+          <div class="text-left titles-font text-uppercase" style="font-size:16px">Peso en libras</div>
+         </div>
+        <div class="row justify-between items-center full-width q-pa-sm q-mt-md">
+          <div class="col-3 q-ml-xs q-mr-xs ">
             <q-input
               v-model="form.peso"
               dense
@@ -111,6 +116,7 @@
             />
           </div>
         </div>
+        
 
         <div class=" q-mt-md titles-font text-uppercase" style="font-size:16px">¿Desea Reempaque?</div>
         <div class="q-mt-sm my-font-semibold">

@@ -20,6 +20,9 @@
               <q-item-label
                 class="text-primary my-font-regular"
               >Fecha de llegada: <label> {{formatDate(item.fecha_llegada)}} </label> </q-item-label>
+              <q-item-label
+                class="text-primary my-font-regular"
+              >Descripcion: <label > {{item.descripcion}} </label> </q-item-label>
               <div class="text-primary my-font-semibold row q-mt-sm items-center" style="font-size:14px" >
                 <div style="width:10px;height:10px;border-radius:100%" class="q-mr-sm" :style="{ 'background-color': colorCircle(item.estado)}" ></div> {{item.estado === 'pendiente' ? 'Pendiente' : 'Recibido'}}
               </div>

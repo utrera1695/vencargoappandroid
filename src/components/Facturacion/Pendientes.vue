@@ -57,7 +57,7 @@
           />
           <q-btn
             :label="
-              item.estado_pago === 'Pendiente' ? 'reportar pago' : 'ver factura'
+              item.estado_pago === 'Pendiente' ? 'pagar factura' : 'ver factura'
             "
             color="primary"
             style="letter-spacing:-1px;"

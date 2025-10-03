@@ -2,6 +2,22 @@
   <q-page
     class="q-pb-lg"
   >
+  <q-dialog v-model="alert" class="window-width" >
+      <q-card class="my-font-regular window-width">
+        <q-card-section>
+          <div class="text-h6 text-bold text-uppercase my-font-extra-bold">Factura #{{ dialogFactura.nro_factura }}</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none color-siete" style="font-size:16px">
+          Nota de envío:
+          <p>{{ dialogFactura.nota_envio }}</p>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="OK" color="primary" v-close-popup  />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
     <!-- <div class="q-pt-md row justify-center">
       <q-btn-toggle
         v-model="toggle"
@@ -64,6 +80,12 @@
                 >
                   Envío: <label> {{formatEnvio(item.tipo_envio)}} </label>
                 </q-item-label>
+                <q-item-label
+                  v-if="item.reempaque"
+                  class="text-primary my-font-regular"
+                >
+                  Reempaque: <label style="text-transform: uppercase;"> {{item.reempaque}} </label>
+                </q-item-label>
                 <div
                   class="text-primary my-font-semibold row q-mt-sm items-center"
                   style="font-size:14px"
@@ -83,7 +105,19 @@
               inset
             />
           </q-card-section>
-          <div class="row justify-end titles-font q-gutter-x-xs">
+          <div class="row justify-between items-center q-my-sm" style="gap: 15px;">
+            <q-btn
+              v-if="item.id_factura"
+              icon="download"
+              label="detalle del envío"
+               color="primary"
+              style="letter-spacing:-1px;"
+              flat
+              padding="xs"
+              rounded
+              dense
+              @click="dfile(item)"
+            />
             <q-btn
               v-if="!isMapItem(item)"
               icon="my_location"
@@ -91,25 +125,25 @@
               color="primary"
               style="letter-spacing:-1px;"
               flat
-              dense
-              :ripple="false"
+              padding="xs"
               rounded
+              dense
               @click="verEnvio(item.map.position.lat, item.map.position.lng, item)"
             />
-            <div
-              v-if="!isMapItem(item)"
-              class="q-mb-xs col-12"
-            />
-            <q-btn
-              v-if="item.flag === 1"
-              label="recibo"
-              color="primary"
-              style="letter-spacing:-1px;"
-              flat
-              dense
-              rounded
-              @click="dfile(item.link_print)"
-            />
+          </div>
+          <div class="row justify-center q-my-sm" style="gap: 10px;">
+              <q-btn
+                v-if="item.nota_envio && item.nota_envio !== null && item.nota_envio !== ''"
+                  color="secondary"
+                  style="letter-spacing:-1px;padding: 0px;width: 100%;"
+                  padding="xs"
+                  outline
+                  rounded
+                  @click="verNota( item)"
+              >
+                <div style="width:10px;height:10px;border-radius:100%" class="q-mr-sm" :style="{ 'background-color': colorCircle(2)}" ></div>
+                <div>Ver nota</div>
+              </q-btn>
           </div>
         </q-card>
         <div
@@ -137,32 +171,47 @@
               style="height:35vh;width:100%;padding-bottom: 7px;"
               v-if="infoShippings"
             >
-              <div class="column text-center text-primary" style="padding-top:7px;">
-                <div class="column q-pt-sm">
-                  <div class="text-uppercase my-font-extra-bold text-h6 text-bold text-primary">Nro Factura</div>
-                  <div class="text-uppercase my-font-semibold text-subtitle1" style="line-height:10px"> {{infoShippings.nro_factura}} </div>
+              <div class="column text-primary" style="padding-top:7px;">
+                <div class="row items-start q-mx-md q-pt-sm justify-between"  style="gap: 15px;">
+                  <div class="text-uppercase my-font-extra-bold text-base text-bold text-primary">Nro Factura</div>
+                  <div class="text-uppercase my-font-semibold text-sm" style="line-height:auto"> {{infoShippings.nro_factura}} </div>
                 </div>
 
-                <div class="column q-pt-sm">
-                  <div class="text-uppercase my-font-extra-bold text-h6 text-bold text-primary">Tracking</div>
-                  <div
-                    v-for="(item, index) in infoShippings.warehouses_filter"
-                    :key="index"
-                    class="text-uppercase my-font-semibold text-subtitle1"
-                    style="line-height:10px"
-                  >
-                    <span
-                      v-if="item.tracking"
-                      style="line-height:23px"
-                    > {{ item.tracking }} </span>
+                <div class="row items-start q-mx-md q-pt-sm justify-between"  style="gap: 15px;">
+                  <div class="text-uppercase my-font-extra-bold text-base text-bold text-primary">Tracking</div>
+                  <div class="column text-right">
+                    <div
+                      v-for="(item, index) in infoShippings.warehouses_filter"
+                      :key="index"
+                      class=" text-uppercase my-font-semibold text-sm text-right"
+                      style="line-height:10px"
+                    >
+                      <span
+                        v-if="item.tracking"
+                        style="line-height:23px"
+                      > {{ item.tracking }} </span>
+                    </div>
                   </div>
                 </div>
-
-                <div class="column q-pt-md">
-                  <div class="text-uppercase my-font-extra-bold text-h6 text-bold text-primary q-px-xl" style="line-height:20px">estatus</div>
+                <div class="row items-start q-mx-md q-pt-sm justify-between"  style="gap: 15px;">
+                  <div class="text-uppercase my-font-extra-bold text-base text-bold text-primary" style="line-height:20px">Envío</div>
                   <div
-                    class="text-uppercase my-font-semibold text-subtitle1 q-pt-xs"
+                    class="text-uppercase my-font-semibold text-sm"
                     style="line-height:auto"
+                  > {{formatEnvio(infoShippings.tipo_envio)}} </div>
+                </div>
+                 <div class="row items-start q-mx-md q-pt-sm justify-between"  style="gap: 15px;">
+                  <div class="text-uppercase my-font-extra-bold text-base text-bold text-primary" style="line-height:20px">Reempaque</div>
+                  <div
+                    class="text-uppercase my-font-semibold text-sm"
+                    style="line-height:auto"
+                  > {{infoShippings.reempaque}} </div>
+                </div>
+                <div class="row items-start q-mx-md q-pt-sm justify-between no-wrap" style="gap: 15px;">
+                  <div class="text-uppercase my-font-extra-bold text-base text-bold text-primary" style="line-height:20px">estatus</div>
+                  <div
+                    class="text-uppercase my-font-semibold text-sm text-right"
+                    style="line-height:auto; min-width: 224px;"
                   > {{infoShippings.estado_envio}} </div>
                 </div>
               </div>
@@ -191,6 +240,7 @@ import GoogleMap from '../../components/GoogleMapView'
 import { mapGetters } from 'vuex'
 import moment from 'moment'
 
+import env from 'src/env'
 export default {
   // mixins: [ListMixin],
   components: {
@@ -200,6 +250,8 @@ export default {
     return {
       toggle: 'fac',
       center: { lat: 10, lng: 10 },
+      alert: false,
+      dialogFactura: {},
       dEnvio: false,
       route: 'shipments',
       infoShippings: null,
@@ -212,7 +264,8 @@ export default {
       nodataC: false,
       isFirstLoad: true,
       resultsPerPage: 5,
-      isLoading: false
+      isLoading: false,
+      urlApi: env.apiUrl
     }
   },
   computed: {
@@ -247,6 +300,10 @@ export default {
       this.isLoading = true
       await this.loadPage()
       this.isLoading = false
+    },
+    async verNota (itm) {
+      this.dialogFactura = itm
+      this.alert = true
     },
     async loadPage () {
       let res
@@ -364,9 +421,10 @@ export default {
         this.getRecord()
       }
     },
-    async dfile (item) {
-      console.log(item, 'item')
-      window.open(item.link_print)
+    async dfile (factura) {
+      const userInfo = this.UserInfo()
+      const url = `${this.urlApi}invoice/print/detail/${factura.id_factura}?usuario_id=${userInfo.user.usuario_id}`
+      window.open(url)
     },
     beforeMounted () {
       this.onToggleInput(true)

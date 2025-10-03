@@ -54,8 +54,9 @@ export default {
     // funcion para configurar onesignal
     onesignalSetup () {
       document.addEventListener('deviceready', OneSignalInit, false)
-      function OneSignalInit () {
-        window.plugins.OneSignal.setAppId('badde4cc-d96e-4417-85ef-e3d1fa312963')
+      function OneSignalInit() {
+        /* ONE SIGNAL CONFIG */
+        window.plugins.OneSignal.setAppId('900ab728-face-4c36-9fff-abe810e6b2dc')
         window.plugins.OneSignal.setNotificationOpenedHandler(function (
           jsonData
         ) {
