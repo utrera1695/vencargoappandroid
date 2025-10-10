@@ -255,7 +255,7 @@ export default {
       } else if (dataEnvio && dataEnvio.estado_pago === 'Pendiente' && moduleData === 'Factura-Envio') {
         return `
           <div class="q-mt-sm">
-            El paquete ee encuentra pendiente por pagar con estado ${dataEnvio?.shipment_status?.title}.
+            El paquete se encuentra pendiente por pagar con estado ${dataEnvio?.shipment_status?.title}.
           </div>
         `
       } else if (dataEnvio && dataEnvio.estado_pago === 'Verificacion-Pago' && moduleData === 'Factura-Envio') {
