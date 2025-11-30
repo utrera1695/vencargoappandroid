@@ -21,9 +21,16 @@
             <q-icon name="arrow_forward_ios" />
           </q-item-section>
         </q-item>
+        <q-separator />
+        <q-item clickable v-ripple @click="gotoPage()">
+          <q-item-section>Términos y condiciones</q-item-section>
+          <q-item-section avatar>
+            <q-icon name="arrow_forward_ios" />
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-card>
-
+    <a style="display:none" ref="terms" href="https://venezuelacargo.com/terminos-y-condiciones/">Link</a>
     <section
       class="q-pa-md"
     >
@@ -61,14 +68,14 @@
           class="col-12"
         >
           <strong>Address:</strong>
-          6994 NW 82 Ave
+          11017 NW 122ND ST #17
         </span>
 
         <span
           class="col-12"
         >
           <strong>City:</strong>
-          MIAMI
+          MEDLEY
         </span>
 
         <span
@@ -82,7 +89,7 @@
           class="col-12"
         >
           <strong>Zip code:</strong>
-          33166
+          33178
         </span>
       </q-card>
     </section>
@@ -131,6 +138,10 @@ export default {
   },
   methods: {
     ...mapGetters('generals', ['UserInfo']),
+    gotoPage () {
+      const ir = this.$refs.terms
+      ir.click()
+    },
     async getUserInfo () {
       this.$q.loading.show()
       const userInfo = this.UserInfo()
