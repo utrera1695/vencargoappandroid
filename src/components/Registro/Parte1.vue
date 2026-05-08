@@ -47,7 +47,7 @@
       @blur="$v.data.apellidos.$touch()"
       @input="upper(data.nombres, data.apellidos)"
     />
-    <q-input outlined dense v-model.number="data.cedula" label="Cédula" class="full-width" type="number"
+    <q-input outlined dense v-model="data.cedula" label="Cédula o RIF" placeholder="Cédula o RIF" class="full-width"
       :error="$v.data.cedula.$error" @blur="$v.data.cedula.$touch()"
     />
     <q-input outlined dense v-model.number="data.telefono" label="Teléfono" class="full-width" type="tel"

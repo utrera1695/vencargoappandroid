@@ -13,7 +13,7 @@
       <q-input outlined dense v-model="data.apellidos" label="Apellido" class="full-width"
         :error="$v.data.apellidos.$error" @blur="$v.data.apellidos.$touch()" @input="upper(data.nombres, data.apellidos)"
       />
-      <q-input outlined dense v-model="data.cedula" label="Cédula" class="full-width"
+      <q-input outlined dense v-model="data.cedula" label="Cédula o RIF" placeholder="Cédula o RIF" class="full-width"
         :error="$v.data.cedula.$error"
         :error-message="cedulaErrorMessage"
         @blur="$v.data.cedula.$touch()"
@@ -69,8 +69,8 @@ export default {
   },
   computed: {
     cedulaErrorMessage () {
-      if (!this.$v.data.cedula.required) return 'La cédula es requerida'
-      if (!this.$v.data.cedula.validLength) return 'La cédula debe tener entre 5 y 8 números'
+      if (!this.$v.data.cedula.required) return 'La cédula o RIF es requerida'
+      if (!this.$v.data.cedula.validLength) return 'La cédula o RIF debe tener entre 5 y 8 números'
       return ''
     }
   },
