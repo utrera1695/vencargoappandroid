@@ -13,8 +13,12 @@
       <q-input outlined dense v-model="data.apellidos" label="Apellido" class="full-width"
         :error="$v.data.apellidos.$error" @blur="$v.data.apellidos.$touch()" @input="upper(data.nombres, data.apellidos)"
       />
-      <q-input outlined dense v-model.number="data.cedula" label="Cédula" class="full-width" type="number"
-        :error="$v.data.cedula.$error" @blur="$v.data.cedula.$touch()"
+      <q-input outlined dense v-model="data.cedula" label="Cédula" class="full-width"
+        :error="$v.data.cedula.$error"
+        :error-message="cedulaErrorMessage"
+        @blur="$v.data.cedula.$touch()"
+        @input="checkCedula(data.cedula)"
+        @keypress="filterCedula"
       />
       <q-input outlined dense v-model.number="data.telefono" label="Teléfono" class="full-width" type="tel"
         :error="$v.data.telefono.$error" @blur="$v.data.telefono.$touch()"
@@ -34,7 +38,7 @@
 </template>
 
 <script>
-import { required, email, maxLength } from 'vuelidate/lib/validators'
+import { required, email, maxLength, minLength } from 'vuelidate/lib/validators'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -51,8 +55,37 @@ export default {
         apellidos: { required, maxLength: maxLength(40) },
         email: { required, email },
         nombre_usuario: { required, maxLength: maxLength(40) },
-        cedula: { required, maxLength: maxLength(40) },
+        cedula: {
+          required,
+          validLength: (val) => {
+            const strVal = val ? String(val) : ''
+            const digits = strVal.replace(/[^0-9]/g, '').length
+            return digits >= 5 && digits <= 8
+          }
+        },
         telefono: { required, maxLength: maxLength(40) }
+      }
+    }
+  },
+  computed: {
+    cedulaErrorMessage () {
+      if (!this.$v.data.cedula.required) return 'La cédula es requerida'
+      if (!this.$v.data.cedula.validLength) return 'La cédula debe tener entre 5 y 8 números'
+      return ''
+    }
+  },
+  watch: {
+    'data.cedula': function (val) {
+      if (val) {
+        const strVal = String(val)
+        const text = strVal.toUpperCase().replace(/[^VJE0-9]/g, '')
+        let formatted = text
+        if (text.length > 0 && 'VJE'.includes(text.charAt(0))) {
+          formatted = text.length > 1 ? `${text.charAt(0)}-${text.substring(1)}` : text
+        }
+        if (val !== formatted) {
+          this.data.cedula = formatted
+        }
       }
     }
   },
@@ -64,6 +97,25 @@ export default {
     upper (name, last) {
       this.data.nombres = name.toUpperCase()
       this.data.apellidos = last.toUpperCase()
+    },
+    filterCedula (evt) {
+      const char = String.fromCharCode(evt.keyCode || evt.which).toUpperCase()
+      const val = this.data.cedula ? String(this.data.cedula) : ''
+      if (/[0-9]/.test(char)) return true
+      if (['V', 'J', 'E'].includes(char) && val.length === 0) return true
+      evt.preventDefault()
+      return false
+    },
+    checkCedula (val) {
+      if (val) {
+        const strVal = String(val)
+        const text = strVal.toUpperCase().replace(/[^VJE0-9]/g, '')
+        if (text.length > 0 && 'VJE'.includes(text.charAt(0))) {
+          this.data.cedula = text.length > 1 ? `${text.charAt(0)}-${text.substring(1)}` : text
+        } else {
+          this.data.cedula = text
+        }
+      }
     },
     async changeDP () {
       this.$v.$touch()

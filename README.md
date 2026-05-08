@@ -1,31 +1,50 @@
-# Venezuela cargo App
+# Venezuela Cargo - App Móvil
 
-Venezuela cargo is create with Quasar Framework and build with Cordova
+Aplicación móvil Android desarrollada con Quasar Framework (Vue 2 + Cordova)
 
-## Install the dependencies
+## Documentación
 
-### Prepare your development environment
+- [Arquitectura del Sistema](../docs/ARQUITECTURA.md)
+- [API Reference](../docs/API.md)
 
-1. Download [gradle](https://gradle.org/install/), JDK and Android Studio to download and install SDK
+## Requisitos
 
-   Versions recomended
+- Node.js >= 10.18.1
+- NPM >= 6.13.4
+- JDK 17
+- Gradle 7.6.4
+- Android SDK 33
+- Cordova
 
-   Gradle = 7.6.4
-
-   JDK = 17
-
-   SDK = 33
-
-2. Cofigure environment Variables
-
-   Show more in [Quasar documentation](https://quasar.dev/quasar-cli-vite/developing-cordova-apps/preparation/)
-
-### Build the app for production
+## Instalación
 
 ```bash
-quasar build or npm run dev
+npm install
 ```
 
-### Customize the configuration
+## Desarrollo
 
-See [Configuring quasar.conf.js](https://v1.quasar.dev/quasar-cli/quasar-conf-js).
+```bash
+npm run dev
+```
+
+## Build Android
+
+```bash
+# Debug
+npm run cordova:debug
+
+# Producción
+npm run cordova:prod
+```
+
+## Estructura
+
+```
+src/
+├── pages/          # Vistas de la app
+├── components/     # Componentes reutilizables
+├── layouts/        # Layouts principales
+├── store/          # Estado (Vuex)
+└── router/         # Rutas
+```

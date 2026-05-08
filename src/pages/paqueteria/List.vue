@@ -32,6 +32,7 @@
             <q-item-section>
               <q-item-label class="text-bold text-primary titles-font" style="font-size:15px">WH-{{item.warehouse}}</q-item-label>
               <q-item-label class="text-primary my-font-regular" lines="2">Descripción: <label class="text-uppercase"> {{item.descripcion}} </label> </q-item-label>
+              <q-item-label class="text-primary my-font-regular" lines="2">Tracking: <label class="text-uppercase"> {{item.tracking}} </label> </q-item-label>
               <q-item-label  class="text-primary my-font-regular" v-if="item.fecha_llegada" >Fecha de recepción: {{formatDate(item.fecha_llegada)}} </q-item-label>
               <div class="text-primary my-font-semibold row q-mt-sm items-center" style="font-size:14px" >
                 <div

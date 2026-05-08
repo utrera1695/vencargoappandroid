@@ -177,13 +177,13 @@ export default {
       // lastname
       content += `Last name: VZLACARGO\n`;
       // address
-      content += `Address: 6994 NW 82 Ave\n`;
+      content += `Address: 11017 NW 122ND ST #17\n`;
       // city
-      content += `City: MIAMI\n`;
+      content += `City: MEDLEY\n`;
       // state
       content += `State: FLORIDA\n`;
       // zip code
-      content += `Zip code: 33166\n`;
+      content += `Zip code: 33178\n`;
 
       const el = document.createElement('textarea');  // Crea un nuevo elemento textarea
       el.value = content;                             // Asigna el valor del texto a copiar
