@@ -13,7 +13,7 @@
       <q-input outlined dense v-model="data.apellidos" label="Apellido" class="full-width"
         :error="$v.data.apellidos.$error" @blur="$v.data.apellidos.$touch()" @input="upper(data.nombres, data.apellidos)"
       />
-      <q-input outlined dense v-model="data.cedula" label="Cédula o RIF" placeholder="Cédula o RIF" class="full-width"
+      <q-input outlined dense v-model="data.cedula" label="Cédula o RIF" class="full-width"
         :error="$v.data.cedula.$error"
         :error-message="cedulaErrorMessage"
         @blur="$v.data.cedula.$touch()"
@@ -60,7 +60,7 @@ export default {
           validLength: (val) => {
             const strVal = val ? String(val) : ''
             const digits = strVal.replace(/[^0-9]/g, '').length
-            return digits >= 5 && digits <= 8
+            return digits >= 5 && digits <= 9
           }
         },
         telefono: { required, maxLength: maxLength(40) }
