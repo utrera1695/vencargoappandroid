@@ -66,6 +66,7 @@
           label="Cédula o RIF"
           class="full-width"
           type="tel"
+          :maxlength="cedulaPrefix === 'J' ? 9 : 8"
           :error="$v.cedulaNumber.$error"
           :error-message="cedulaErrorMessage"
           @blur="$v.cedulaNumber.$touch()"
