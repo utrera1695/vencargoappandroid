@@ -1,21 +1,22 @@
 <template>
   <q-page>
     <div class="column q-pa-md q-pt-xl full-width items-center">
-      <q-input outlined dense v-model="data.nombre_usuario" label="Nombre de usuario" class="full-width"
+      <q-input disable outlined dense v-model="data.nombre_usuario" label="Nombre de usuario" class="full-width"
         :error="$v.data.nombre_usuario.$error" @blur="$v.data.nombre_usuario.$touch()"
       />
-      <q-input outlined dense v-model="data.email" label="Correo electrónico" class="full-width" type="email"
+      <q-input disable outlined dense v-model="data.email" label="Correo electrónico" class="full-width" type="email"
         :error="$v.data.email.$error" @blur="$v.data.email.$touch()"
       />
-      <q-input outlined dense v-model="data.nombres" label="Nombre" class="full-width"
+      <q-input disable outlined dense v-model="data.nombres" label="Nombre" class="full-width"
         :error="$v.data.nombres.$error" @blur="$v.data.nombres.$touch()" @input="upper(data.nombres, data.apellidos)"
       />
-      <q-input outlined dense v-model="data.apellidos" label="Apellido" class="full-width"
+      <q-input disable outlined dense v-model="data.apellidos" label="Apellido" class="full-width"
         :error="$v.data.apellidos.$error" @blur="$v.data.apellidos.$touch()" @input="upper(data.nombres, data.apellidos)"
       />
       <div class="row q-col-gutter-sm full-width q-pb-md">
         <div class="col-4">
           <q-select
+            disable
             outlined
             dense
             v-model="cedulaPrefix"
@@ -26,6 +27,7 @@
         </div>
         <div class="col-8">
           <q-input
+            disable
             outlined
             dense
             v-model="cedulaNumber"
@@ -40,18 +42,11 @@
           />
         </div>
       </div>
-      <q-input outlined dense v-model.number="data.telefono" label="Teléfono" class="full-width" type="tel"
+      <q-input disable outlined dense v-model.number="data.telefono" label="Teléfono" class="full-width" type="tel"
         :error="$v.data.telefono.$error" @blur="$v.data.telefono.$touch()"
       />
-      <div class="row justify-center full-width titles-font">
-        <q-btn
-          label="guardar"
-          style="width:200px"
-          color="secondary"
-          text-color="primary"
-          push
-          @click="changeDP()"
-        />
+      <div class="text-red text-center text-weight-bold q-mt-lg" style="font-size: 1.1rem; line-height: 1.4;">
+        PARA EDITAR DATOS COMUNICARSE CON ATENCIÓN AL CLIENTE
       </div>
   </div>
   </q-page>
