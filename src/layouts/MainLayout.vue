@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf" class="my-font">
     <q-header v-if="toolbar" class="bg-secondary">
-      <q-toolbar class="row justify-center items-center" style="height:90%">
+      <q-toolbar class="row justify-center items-center">
 
         <div class="column items-center">
           <q-img src="iconlogo2.svg" width="40px" height="40px" />
@@ -29,7 +29,7 @@
             </q-menu>
           </q-btn>
           <q-btn icon="logout" color="primary" flat round @click="$router.push('/login')" style="position: absolute;right:5px;top:5px" />-->
-          <q-img src="iconos/logout1.svg" style="position: absolute;right:10px;top:15px" width="20px" height="20px" @click="confirmLogout()" />
+          <q-img src="iconos/logout1.svg" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%)" width="20px" height="20px" @click="confirmLogout()" class="cursor-pointer" />
         </div>
       </q-toolbar>
     </q-header>
@@ -135,7 +135,7 @@
       </q-card>
     </q-dialog>
 
-    <q-page-container style="margin-top:0px !important;padding-top:40px !important">
+    <q-page-container>
       <router-view />
     </q-page-container>
   </q-layout>

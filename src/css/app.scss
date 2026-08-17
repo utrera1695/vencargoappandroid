@@ -70,3 +70,17 @@
 .my-font-extra-bold {
   font-family: 'myFontExtraBold';
 }
+
+// Safe area inset support for Android 15+ (API 35/36) Edge-to-Edge and iOS
+.q-header {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.q-footer {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.q-toolbar.absolute-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+

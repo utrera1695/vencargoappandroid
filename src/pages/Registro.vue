@@ -6,7 +6,7 @@
         Registro
       </q-toolbar-title>
     </q-toolbar>
-    <div class="column full-width items-center" style="padding-top:70px">
+    <div class="column full-width items-center" style="padding-top: calc(70px + env(safe-area-inset-top, 0px))">
       <div class="column items-center q-pb-lg" style="width:90%">
         <q-tab-panels v-model="panel" animated class="full-width">
         <q-tab-panel name="1" class="full-width full-height">

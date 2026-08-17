@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.app.venezuelacargo" version="0.2.331" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.app.venezuelacargo" version="0.2.335" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Venezuela Cargo</name>
     <description>A Quasar Framework app</description>
     <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
@@ -24,6 +24,9 @@
         <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/screen/android/vencargo-logo-light.png" />
         <preference name="AndroidWindowSplashScreenBackground" value="#232784" />
         <preference name="OneSignal_APP_ID" value="900ab728-face-4c36-9fff-abe810e6b2dc" />
+        <preference name="android-targetSdkVersion" value="36" />
+        <preference name="android-compileSdkVersion" value="36" />
+        <preference name="android-buildToolsVersion" value="36.0.0" />
         <resource-file src="res/android/drawable-mdpi/ic_stat_onesignal_default.png" target="app/src/main/res/drawable-mdpi/ic_stat_onesignal_default.png" />
         <resource-file src="res/android/drawable-hdpi/ic_stat_onesignal_default.png" target="app/src/main/res/drawable-hdpi/ic_stat_onesignal_default.png" />
         <resource-file src="res/android/drawable-xhdpi/ic_stat_onesignal_default.png" target="app/src/main/res/drawable-xhdpi/ic_stat_onesignal_default.png" />
